@@ -10,9 +10,11 @@ const userQuery = {
   queryKey: ['user'],
   queryFn: async () => {
     const { data } = await customFetch.get('/users/current-user');
+    console.log(data);
     return data;
   },
 };
+console.log(userQuery);
 
 export const loader = (queryClient) => async () => {
   try {
@@ -53,6 +55,7 @@ const DashboardLayout = ({ queryClient }) => {
 
   customFetch.interceptors.response.use(
     (response) => {
+      console.log(response);
       return response;
     },
     (error) => {

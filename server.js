@@ -13,7 +13,8 @@ import cors from 'cors';
 
 // Middleware configuration
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: 'http://localhost:5173', // Change this to your production frontend URL if needed
+  credentials: true // Allow cookies to be sent with requests
 }));
 
 // Routers
