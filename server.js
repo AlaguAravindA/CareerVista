@@ -2,7 +2,6 @@ import "express-async-errors";
 import * as dotenv from "dotenv";
 dotenv.config({ path: "./config.env" });
 import express from "express";
-const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
@@ -11,23 +10,10 @@ import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import cors from 'cors';
 
-// Middleware configuration
-app.use(cors({
-  origin: 'https://bright-elf-232cac.netlify.app/', // Change this to your production frontend URL if needed
-  credentials: true // Allow cookies to be sent with requests
-}));
-
-// Routers
+// Import Routers and Middleware
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
-
-// Public directory
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import path from "path";
-
-// Middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
@@ -37,6 +23,22 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
+
+const app = express();
+
+// Middleware configuration
+const allowedOrigins = ['https://bright-elf-232cac.netlify.app', 'http://localhost:5173'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // Allow cookies to be sent with requests
+}));
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
