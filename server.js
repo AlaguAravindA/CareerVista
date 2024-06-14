@@ -9,24 +9,28 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-const cors = require('cors');
+import cors from 'cors';
 
+// Middleware configuration
 app.use(cors({
   origin: 'http://localhost:5173'
 }));
-// routers
+
+// Routers
 import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
-// public
+
+// Public directory
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
 
-// middleware
+// Middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
+// Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
@@ -34,42 +38,46 @@ cloudinary.config({
 });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
 app.use(mongoSanitize());
 
+// Routes
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("https://careervista-nv0n.onrender.com/api/v1/test", (req, res) => {
+app.get("/api/v1/test", (req, res) => {
   res.json({ msg: "test route" });
 });
 
-app.use("https://careervista-nv0n.onrender.com/api/v1/jobs", authenticateUser, jobRouter);
-app.use("https://careervista-nv0n.onrender.com/api/v1/users", authenticateUser, userRouter);
-app.use("https://careervista-nv0n.onrender.com/api/v1/auth", authRouter);
+app.use("/api/v1/jobs", authenticateUser, jobRouter);
+app.use("/api/v1/users", authenticateUser, userRouter);
+app.use("/api/v1/auth", authRouter);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
-// });
-
+// Handle 404
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
 });
 
+// Error handler middleware
 app.use(errorHandlerMiddleware);
 
+// Database connection and server start
 const port = process.env.PORT || 5100;
 
-// console.log(process.env.MONGO_URL);
 try {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
   app.listen(port, () => {
     console.log(`server running on PORT ${port}...`);
   });
