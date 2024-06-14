@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const customFetch = axios.create({
-  baseURL: '/api/v1',
+  baseURL: 'https://careervista-nv0n.onrender.com/api/v1',
 });
 
 export default customFetch;
