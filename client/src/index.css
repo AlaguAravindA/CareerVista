@@ -1,0 +1,385 @@
+/* ============= GLOBAL CSS =============== */
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+} /*16px*/
+
+:root {
+  /* colors */
+  --primary-50: #e0fcff;
+  --primary-100: #bef8fd;
+  --primary-200: #87eaf2;
+  --primary-300: #54d1db;
+  --primary-400: #38bec9;
+  --primary-500: #2cb1bc;
+  --primary-600: #14919b;
+  --primary-700: #0e7c86;
+  --primary-800: #0a6c74;
+  --primary-900: #06474d;
+
+  /* grey */
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  --grey-500: #64748b;
+  --grey-600: #475569;
+  --grey-700: #334155;
+  --grey-800: #1e293b;
+  --grey-900: #0f172a;
+  /* rest of the colors */
+  --black: #222;
+  --white: #fff;
+  --red-light: #f8d7da;
+  --red-dark: #842029;
+  --green-light: #d1e7dd;
+  --green-dark: #0f5132;
+
+  --small-text: 0.875rem;
+  --extra-small-text: 0.7em;
+  /* rest of the vars */
+
+  --border-radius: 0.25rem;
+  --letter-spacing: 1px;
+  --transition: 0.3s ease-in-out all;
+  --max-width: 1120px;
+  --fixed-width: 600px;
+  --fluid-width: 90vw;
+  --nav-height: 6rem;
+  /* box shadow*/
+  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* DARK MODE */
+
+  --dark-mode-bg-color: #1a1a1a; /* Dark background color */
+  --dark-mode-text-color: #ffffff; /* Light text color for better contrast */
+  --dark-mode-bg-secondary-color: #222222; /* Slightly darker secondary background color */
+  --dark-mode-text-secondary-color: var(--grey-400);
+
+  --background-color: var(--grey-50);
+  --text-color: var(--grey-900);
+  --background-secondary-color: var(--white);
+  --text-secondary-color: var(--grey-500);
+}
+
+.dark-theme {
+  --text-color: #ffffff; /* White text color for better contrast */
+  --background-color: #1a1a1a; /* Dark background color */
+  --text-secondary-color: #b0bec5; /* Lighter secondary text color */
+  --background-secondary-color: #303030; /* Slightly lighter secondary background color */
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle box shadow for elements */
+}
+
+body {
+  background: var(--background-color); /* Light background color */
+  color: var(--text-color); /* Dark text color */
+  font-family: "Roboto", sans-serif; /* Modern sans-serif font */
+  font-weight: 400;
+  line-height: 1.6; /* Slightly increased line height for better readability */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing);
+}
+
+h1 {
+  font-size: 3rem; /* Large heading */
+  font-weight: 700; /* Bold font weight for emphasis */
+  margin-bottom: 1rem; /* Add some spacing below the heading */
+}
+
+h2 {
+  font-size: 2.5rem; /* Medium heading */
+  font-weight: 600; /* Semi-bold font weight */
+  margin-bottom: 0.75rem; /* Add some spacing below the heading */
+}
+
+h3 {
+  font-size: 2rem; /* Small heading */
+  font-weight: 500; /* Medium font weight */
+  margin-bottom: 0.5rem; /* Add some spacing below the heading */
+}
+
+h4 {
+  font-size: 1.5rem; /* Extra small heading */
+  font-weight: 500; /* Medium font weight */
+  margin-bottom: 0.5rem; /* Add some spacing below the heading */
+}
+
+h5 {
+  font-size: 1.25rem; /* Tiny heading */
+  font-weight: 400; /* Normal font weight */
+  margin-bottom: 0.25rem; /* Add some spacing below the heading */
+}
+
+/* BIGGER FONTS */
+/* h1 {
+  font-size: clamp(3rem, 6vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+
+h4 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 2vw, 2rem);
+}
+ */
+
+.text {
+  margin-bottom: 1rem; /* Decrease margin for more compact spacing */
+  max-width: 800px; /* Increase max-width for better readability on larger screens */
+  line-height: 1.6; /* Increase line height for better readability */
+}
+
+/* Add some spacing between paragraphs */
+.text p {
+  margin-bottom: 1.25rem; /* Increase margin between paragraphs for better readability */
+}
+
+/* Add some margin to headings for better separation */
+.text h1,
+.text h2,
+.text h3,
+.text h4,
+.text h5 {
+  margin-bottom: 0.75rem; /* Add margin below headings for better separation */
+}
+
+small,
+.text-small {
+  font-size: var(--small-text);
+}
+
+/* Links */
+a {
+  text-decoration: none; /* Remove default underline */
+  color: var(--primary-color); /* Use a primary color for links */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+a:hover {
+  color: var(--primary-color-dark); /* Darker color on hover */
+}
+
+/* Unordered Lists */
+ul {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0; /* Remove default padding */
+}
+
+/* Add some spacing between list items */
+ul li {
+  margin-bottom: 0.5rem; /* Adjust margin bottom for better spacing */
+}
+
+.img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+/* buttons */
+
+.btn {
+  cursor: pointer;
+  color: var(--white);
+  background: var(--primary-500);
+  border: transparent;
+  border-radius: var(--border-radius);
+  letter-spacing: var(--letter-spacing);
+  padding: 0.375rem 0.75rem;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+  text-transform: capitalize;
+  display: inline-block;
+}
+.btn:hover {
+  background: var(--primary-700);
+  box-shadow: var(--shadow-3);
+}
+.btn-hipster {
+  color: var(--primary-500);
+  background: var(--primary-200);
+}
+.btn-hipster:hover {
+  color: var(--primary-200);
+  background: var(--primary-700);
+}
+.btn-block {
+  width: 100%;
+}
+button:disabled {
+  cursor: wait;
+}
+.danger-btn {
+  color: var(--red-dark);
+  background: var(--red-light);
+}
+.danger-btn:hover {
+  color: var(--white);
+  background: var(--red-dark);
+}
+/* alerts */
+.alert {
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 1rem;
+  border-color: transparent;
+  border-radius: var(--border-radius);
+}
+
+.alert-danger,
+.alert-success {
+  padding: 1rem; /* Add padding for better spacing */
+  border-radius: 4px; /* Round the corners */
+  font-weight: 500; /* Use a slightly bold font weight for emphasis */
+}
+
+.alert-danger {
+  color: #fff; /* White text color for contrast */
+  background: #f44336; /* Use a red color for danger alerts */
+}
+
+.alert-success {
+  color: #fff; /* White text color for contrast */
+  background: #e370d9; /* Use a green color for success alerts */
+}
+
+/* form */
+
+.form {
+  width: 90vw;
+  max-width: var(--fixed-width);
+  background: var(--background-secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-2);
+  padding: 2rem 2.5rem;
+  margin: 3rem auto;
+}
+.form-label {
+  display: block;
+  font-size: var(--small-text);
+  margin-bottom: 0.75rem;
+  text-transform: capitalize;
+  letter-spacing: var(--letter-spacing);
+  line-height: 1.5;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  border: 1px solid var(--grey-300);
+  color: var(--text-color);
+}
+.form-input,
+.form-select,
+.form-btn {
+  height: 35px;
+}
+.form-row {
+  margin-bottom: 1rem;
+}
+
+.form-textarea {
+  height: 7rem;
+}
+::placeholder {
+  font-family: inherit;
+  color: var(--grey-400);
+}
+.form-alert {
+  color: var(--red-dark);
+  letter-spacing: var(--letter-spacing);
+  text-transform: capitalize;
+}
+/* alert */
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 6rem;
+  height: 6rem;
+  border: 5px solid var(--grey-400);
+  border-radius: 50%;
+  border-top-color: var(--primary-500);
+  animation: spinner 0.6s linear infinite;
+}
+
+/* title */
+
+.title {
+  text-align: center;
+}
+
+.title-underline {
+  background: var(--primary-500);
+  width: 7rem;
+  height: 0.25rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.container {
+  width: var(--fluid-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* BUTTONS AND BADGES */
+.pending {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.interview {
+  background: #e0e8f9;
+  color: #647acb;
+}
+.declined {
+  background: #ffeeee;
+  color: #d66a6a;
+}
+.bg {
+  z-index: -1;
+}
