@@ -37,16 +37,16 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true // Allow cookies to be sent with requests
+  credentials: true // Allow cookies to be sent with requests-+
 }));
 
-const __dirname = __dirname(fileURLToPath(import.meta.url));
+// const __dirname = __dirname(fileURLToPath(import.meta.url));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-app.use(express.static(path.resolve(__dirname, "./client/dist")));
+// app.use(express.static(path.resolve(__dirname, "./client/dist")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
